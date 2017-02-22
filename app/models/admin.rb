@@ -4,6 +4,7 @@ class Admin < ActiveRecord::Base
   include BCrypt
 
   has_many :movie_theaters
+
   has_many :receipts
 
   has_secure_password
