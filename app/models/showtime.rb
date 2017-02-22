@@ -5,6 +5,8 @@ class Showtime < ActiveRecord::Base
 
   belongs_to :auditorium
 
+  belongs_to :movie_theater
+
   has_many :receipts
 
   validate do |showtime|
