@@ -7,14 +7,12 @@ Rails.application.routes.draw do
 
   resources :session, only: [:new, :create, :destroy]
 
-  resources :admins, only: [:new, :create] do
-    resources :receipt, only: [:index, :show] do
-      resources :movies, only: [:index]
-    end
+  resources :admins, only: [ ] do
+    resources :receipt, only: [:index, :show]
     resources :movie_theaters do
-      resources :movies
-      resources :auditoriums
-      resources :showtimes
+      resources :movies, except: [:index, :show]
+      resources :auditoriums, except: [:index, :show]
+      resources :showtimes, except: [:index, :show]
     end
   end
 
