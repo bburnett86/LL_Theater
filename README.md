@@ -7,6 +7,10 @@
 * User/Session
 * Receipt Mailer
 
+##### Admin Info:
+username: "admin"
+password: "password"
+
 ##### Auditorium
 
 * Needs to have a seat capacity.
