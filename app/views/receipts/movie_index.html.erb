@@ -1,0 +1,25 @@
+<div class = "container-fluid">
+  <div class = "jumbotron">
+    <div class = "row center-row">
+      <h2>Total sales index for <%= @movie.name %></h2>
+    </div>
+    <div class ="row">
+      <div class = "col-md-6 not-mobile">
+        <h4>Name on receipt:</h4>
+      </div>
+      <div class = "col-md-6 not-mobile">
+        <h4>Price of Ticket</h4>
+      </div>
+    </div>
+    <% @receipts.each do |receipt| %>
+    <div class = "row center-row">
+      <div class = "col-md-6">
+        <p><%= receipt.name %></p>
+      </div>
+      <div class = "col-md-6">
+        <p><%= number_to_currency(receipt.showtime.price) %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

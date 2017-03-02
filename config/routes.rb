@@ -3,26 +3,22 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'movie_theater#home'
+  root 'movies#home'
 
-  resources :session, only: [:new, :create, :destroy]
+  resources :session, only: [:new, :create]
+  get '/logout' => 'session#logout'
 
-  resources :admins, only: [:new, :create] do
-    resources :receipt, only: [:index, :show] do
-      resources :movies, only: [:index]
-    end
-    resources :movie_theaters do
-      resources :movies
-      resources :auditoriums
-      resources :showtimes
-    end
+  get '/movies/:movie_id/showtimes/:showtime_id/receipts', to: 'receipts#movie_index', as: 'receipt_by_movie'
+
+  resources :auditoriums do
+    resources :showtimes, only: [:create, :new]
   end
+  resources :receipts, only: [:index]
 
-  resources :movie_theaters, only: [:home] do
-    resources :movies, only: [:show], param: :name do
-      resources :showtimes, only: [:show] do
-        resources :receipts, only: [:create, :new]
-      end
+
+  resources :movies do
+    resources :showtimes, except: [:create, :new] do
+      resources :receipts, only: [:create, :new]
     end
   end
 

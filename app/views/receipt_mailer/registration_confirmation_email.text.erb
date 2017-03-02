@@ -1,0 +1,6 @@
+Hi <%= @receipt.name %>
+Thank you for purchasing a ticket for <% @receipt.showtime.movie.name %>! Below are the details of the transaction.
+Shopper: <%= @receipt.name %>
+Email Address: <%= @receipt.email %>
+Credit Card Info: <%= @receipt.cc_num_receipt %>
+Credit Card Expiration Date: <%= @receipt.cc_num_receipt %>

@@ -1,0 +1,27 @@
+<div class = "container-fluid">
+  <div class = "jumbotron">
+    <%= form_for @user, url: url_for(action: 'create', controller: 'session') do |a| %>
+      <div class = "row center-row">
+        <%= a.label "Username" %>
+        <%= a.text_field :username %>
+      </div>
+      <div class = "row center-row">
+        <%= a.label "Password" %>
+        <%= a.text_field :password %>
+      </div>
+      <div class = "row center-row">
+        <%= a.submit "Login", class: 'submit-button' %>
+      </div>
+    <% end %>
+    <% if @errors %>
+      <div class="errors-container">
+        <h3 class="errors-header">ERRORS:</h3>
+        <ol class="errors-list">
+          <% @errors.uniq.each do |error| %>
+            <li class="error-list-item"><%= error %></li>
+          <% end %>
+        </ol>
+      </div>
+    <% end %>
+  </div>
+</div>

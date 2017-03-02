@@ -1,0 +1,65 @@
+<div class = "container-fluid">
+  <div class = "jumbotron">
+    <div class = "row center-row">
+    <h1 class = "header">Welcome To Movies on Rails</h1>
+    </div>
+    <div class = "row center-row not-mobile">
+      <div class = "col-md-4">
+        <p class>Poster</p>
+      </div>
+      <div class = "col-md-4">
+        <p class>Movie Name</p>
+      </div>
+      <div class = "col-md-4">
+        <p class>Tagline</p>
+      </div>
+    </div>
+    <% @movies.each do |movie| %>
+      <% if movie.showtimes.length >= 1 %>
+        <div class = "row center-row">
+          <div class = "col-md-4">
+            <%= link_to image_tag(movie.pic_url), movie_path(movie.id)%>
+          </div>
+          <div class = "col-md-4">
+            <h2><%= movie.name %> </h2>
+          </div>
+          <div class = "col-md-4">
+            <p><%= movie.tagline %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<% if logged_in? %>
+  <div class = "container-fluid">
+    <div class = "jumbotron">
+      <div class = "row center-row">
+        <div class = "col-md-4">
+          <div class = "row center-row" >
+            <p>Total Sales: <%= number_to_currency(Receipt.total_sales) %></p>
+          </div>
+          <div class = "row center-row">
+            <%= link_to "Sales Index", receipts_path %>
+          </div>
+        </div>
+        <div class = "col-md-4">
+          <div class = "row center-row">
+            <%= link_to "Create New Movie", new_movie_path %>
+          </div>
+          <div class = "row center-row">
+            <%= link_to "Movie Index", movies_path %>
+          </div>
+        </div>
+        <div class = "col-md-4">
+          <div class = "row center-row">
+          <%= link_to "Construct New Auditorium", new_auditorium_path %>
+          </div>
+          <div class = "row center-row">
+          <%= link_to "Auditorium Index", auditoriums_path %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

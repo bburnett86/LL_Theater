@@ -1,6 +1,8 @@
 class ReceiptMailer < ApplicationMailer
-  def registration_confirmation(user)
-    @user = user
-    mail(:to => "#{user.name} <#{user.email}, :subject => "Registration Confirmation for Awesome App)
- end
+
+  def registration_confirmation_email(receipt)
+    @receipt = receipt
+    mail(to: @receipt.email, :subject => "Your Ticket Receipt")
+  end
+
 end

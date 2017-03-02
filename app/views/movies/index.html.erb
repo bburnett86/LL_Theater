@@ -1,0 +1,22 @@
+<div class = "container-fluid">
+  <div class = "jumbotron">
+    <div class = "row center-row">
+      <h1>Movies</h1>
+    </div>
+    <div class = "row center-row">
+      <% @movies.each do |movie| %>
+        <div class = "row center-row">
+          <div class = "col-md-4">
+            <%= link_to image_tag(movie.pic_url), movie_path(movie.id)%>
+          </div>
+          <div class = "col-md-4">
+            <h2><%= movie.name %> </h2>
+          </div>
+          <div class = "col-md-4">
+            <p><%= movie.tagline %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

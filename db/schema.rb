@@ -11,55 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221211257) do
+ActiveRecord::Schema.define(version: 20170227180403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admins", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "password_digest", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "auditoria", force: :cascade do |t|
-    t.integer  "capacity",         null: false
-    t.integer  "movie_theater_id", null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  create_table "movie_theaters", force: :cascade do |t|
-    t.text     "name",       null: false
-    t.integer  "admin_id",   null: false
+    t.integer  "capacity",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "movies", force: :cascade do |t|
-    t.text     "name",                                      null: false
-    t.text     "pic_url",          default: "no_image.png"
-    t.integer  "hours",                                     null: false
-    t.integer  "minutes",                                   null: false
-    t.text     "starring",                                  null: false
-    t.text     "tagline",                                   null: false
-    t.string   "plot",                                      null: false
-    t.integer  "movie_theater_id",                          null: false
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.text     "name",                                null: false
+    t.text     "pic_url",    default: "no_image.png"
+    t.integer  "hours",                               null: false
+    t.integer  "minutes",                             null: false
+    t.text     "starring",                            null: false
+    t.text     "tagline",                             null: false
+    t.string   "plot",                                null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "receipts", force: :cascade do |t|
-    t.text     "first_name",  null: false
-    t.text     "last_name",   null: false
+    t.text     "name",        null: false
     t.text     "email",       null: false
-    t.integer  "cc_info",     null: false
-    t.date     "cc_exp_date", null: false
-    t.float    "sale_price",  null: false
+    t.text     "cc_info",     null: false
+    t.datetime "cc_exp_date", null: false
     t.integer  "showtime_id", null: false
-    t.integer  "movie_id"
-    t.integer  "seller_id",   null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -72,6 +52,13 @@ ActiveRecord::Schema.define(version: 20170221211257) do
     t.integer  "movie_id",      null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.text     "username",        null: false
+    t.text     "password_digest", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

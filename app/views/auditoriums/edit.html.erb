@@ -1,0 +1,23 @@
+<div class = "container-fluid">
+  <div class = "jumbotron">
+    <%= form_for @auditorium, method: :put do |a| %>
+      <div class = "row center-row">
+        <%= a.label "Capacity:" %>
+        <%= a.text_field :capacity %>
+      </div>
+      <div class = "row center-row">
+        <%= a.submit "Create New Auditorium", class: 'submit-button' %>
+      </div>
+    <% end %>
+    <% if @errors %>
+      <div class="errors-container">
+        <h1 class="errors-header">ERRORS:</h1>
+        <ol class="errors-list">
+          <% @errors.uniq.each do |error| %>
+            <li class="error-list-item"><%= error %></li>
+          <% end %>
+        </ol>
+      </div>
+    <% end %>
+  </div>
+</div>

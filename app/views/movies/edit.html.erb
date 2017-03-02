@@ -1,0 +1,75 @@
+<div class = "container-fluid">
+  <div class = "jumbotron">
+    <%= form_for @movie, method: :put do |m| %>
+      <div class = "row center-row">
+        <div class = "col-md-6 row-align-right">
+          <%= m.label "Name:" %>
+        </div>
+        <div class = "col-md-6 row-align-left">
+          <%= m.text_field :name %>
+        </div>
+      </div>
+      <div class = "row center-row">
+        <div class = "col-md-6 row-align-right">
+          <%= m.label "Picture URL:" %>
+        </div>
+        <div class = "col-md-6 row-align-left">
+          <%= m.text_field :pic_url %>
+        </div>
+      </div>
+      <div class = "row center-row">
+        <div class = "col-md-6 row-align-right">
+          <%= m.label "Hours Long:" %>
+        </div>
+        <div class = "col-md-6 row-align-left">
+          <%= m.text_field :hours %>
+        </div>
+      </div>
+      <div class = "row center-row">
+        <div class = "col-md-6 row-align-right">
+          <%= m.label "Minutes Long:" %>
+        </div>
+        <div class = "col-md-6 row-align-left">
+          <%= m.text_field :minutes %>
+        </div>
+      </div>
+      <div class = "row center-row">
+        <div class = "col-md-6 row-align-right">
+          <%= m.label "Plot" %>
+        </div>
+        <div class = "col-md-6 row-align-left">
+          <%= m.text_area :plot%>
+        </div>
+      </div>
+      <div class = "row center-row">
+        <div class = "col-md-6 row-align-right">
+          <%= m.label "Tag Line" %>
+        </div>
+        <div class = "col-md-6 row-align-left">
+          <%= m.text_area :tagline %>
+        </div>
+      </div>
+      <div class = "row center-row">
+        <div class = "col-md-6 row-align-right">
+          <%= m.label "Starring:" %>
+        </div>
+        <div class = "col-md-6 row-align-left">
+          <%= m.text_field :starring%>
+        </div>
+      </div>
+      <div class = "row center-row">
+        <%= m.submit "Edit Movie", class: 'submit-button' %>
+      </div>
+    <% end %>
+    <% if @errors %>
+      <div class="errors-container">
+        <h1 class="errors-header">ERRORS:</h1>
+        <ol class="errors-list">
+          <% @errors.uniq.each do |error| %>
+            <li class="error-list-item"><%= error %></li>
+          <% end %>
+        </ol>
+      </div>
+    <% end %>
+  </div>
+</div>

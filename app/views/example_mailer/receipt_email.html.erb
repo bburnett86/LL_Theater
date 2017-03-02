@@ -1,0 +1,22 @@
+<div class = "container-fluid">
+  <div class = "jumbotron">
+    <div class = "row center-row">
+      <p>Hi <%= @receipt.name %></p>
+    </div>
+    <div class = "row center-row">
+      <p>Thank you for purchasing a ticket for <% @receipt.showtime.movie.name %>! Below are the details of the transaction.</p>
+    </div>
+    <div class = "row center-row">
+      <p>Shopper: <%= @receipt.name %></p>
+    </div>
+    <div class = "row center-row">
+      <p>Email Address: <% @receipt.email %></p>
+    </div>
+    <div class = "row center-row">
+      <p>Credit Card Info: <% @receipt.cc_num_receipt %> </p>
+    </div>
+    <div class = "row center-row">
+      <p>Credit Card Expiration Date: <% @receipt.cc_num_receipt %></p>
+    </div>
+  </div>
+</div>
