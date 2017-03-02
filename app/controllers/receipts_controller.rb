@@ -26,7 +26,6 @@ class ReceiptsController < ApplicationController
     @showtime = @movie.showtimes.find(params[:showtime_id])
     @receipt = @showtime.receipts.new(showtime_id: @showtime.id, name: params[:receipt][:name] , email: params[:receipt][:email] , cc_info: params[:receipt][:cc_info] , cc_exp_date: params[:receipt][:cc_exp_date])
     if @receipt.save
-      p "hi"
       ReceiptMailer.registration_confirmation_email(@receipt).deliver_now
       redirect_to movie_path(@movie)
     else
