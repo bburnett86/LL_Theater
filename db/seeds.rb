@@ -69,8 +69,8 @@ Showtime.create!(
   auditorium_id: 2,
   movie_id: 2,
   price: 8.50,
-  start: @noon_today + 4.hours - 45.minutes,
-  finish: @noon_today + 4.hours - 45.minutes + (@movie2.hours).hours + (@movie2.minutes).minutes,
+  start: @noon_today + 4.hours + 45.minutes,
+  finish: @noon_today + 4.hours + 45.minutes + (@movie2.hours).hours + (@movie2.minutes).minutes,
 )
 
 Showtime.create!(
@@ -93,8 +93,8 @@ Showtime.create!(
   auditorium_id: 3,
   movie_id: 3,
   price: 8.50,
-  start: @noon_today + 4.hours - 30.minutes,
-  finish: @noon_today + 4.hours - 30.minutes + (@movie3.hours).hours + (@movie3.minutes).minutes,
+  start: @noon_today + 4.hours + 30.minutes,
+  finish: @noon_today + 4.hours + 30.minutes + (@movie3.hours).hours + (@movie3.minutes).minutes,
 )
 
 Showtime.create!(
@@ -141,8 +141,8 @@ Showtime.create!(
   auditorium_id: 5,
   movie_id: 5,
   price: 8.50,
-  start: @noon_today + 4.hours - 45.minutes,
-  finish: @noon_today + 4.hours - 45.minutes + (@movie5.hours).hours + (@movie5.minutes).minutes,
+  start: @noon_today + 4.hours + 45.minutes,
+  finish: @noon_today + 4.hours + 45.minutes + (@movie5.hours).hours + (@movie5.minutes).minutes,
 )
 
 Showtime.create!(
@@ -165,8 +165,8 @@ Showtime.create!(
   auditorium_id: 6,
   movie_id: 6,
   price: 8.50,
-  start: @noon_today + 4.hours - 30.minutes,
-  finish: @noon_today + 4.hours - 30.minutes + (@movie6.hours).hours + (@movie6.minutes).minutes,
+  start: @noon_today + 4.hours + 30.minutes,
+  finish: @noon_today + 4.hours + 30.minutes + (@movie6.hours).hours + (@movie6.minutes).minutes,
 )
 
 Showtime.create!(
@@ -215,8 +215,8 @@ Showtime.create!(
   auditorium_id: 8,
   movie_id: 8,
   price: 8.50,
-  start: @noon_today + 4.hours - 30.minutes,
-  finish: @noon_today + 4.hours - 30.minutes + (@movie8.hours).hours + (@movie8.minutes).minutes,
+  start: @noon_today + 4.hours + 30.minutes,
+  finish: @noon_today + 4.hours + 30.minutes + (@movie8.hours).hours + (@movie8.minutes).minutes,
 )
 
 Showtime.create!(
@@ -263,8 +263,8 @@ Showtime.create!(
   auditorium_id: 10,
   movie_id: 1,
   price: 8.50,
-  start: @noon_today + 2.hours - 30.minutes,
-  finish: @noon_today + 2.hours - 30.minutes + (@movie1.hours).hours + (@movie1.minutes).minutes,
+  start: @noon_today + 2.hours + 30.minutes,
+  finish: @noon_today + 2.hours + 30.minutes + (@movie1.hours).hours + (@movie1.minutes).minutes,
 )
 
 Showtime.create!(
