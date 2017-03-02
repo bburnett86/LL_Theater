@@ -279,7 +279,7 @@ Showtime.create!(
   auditorium_id: 10,
   movie_id: 1,
   price: 8.50,
-  start: @noon_today + 10.hours +30.minutes,
+  start: @noon_today + 10.hours + 30.minutes,
   finish: @noon_today + 10.hours + 30.minutes + (@movie1.hours).hours + (@movie1.minutes).minutes,
 )
 
