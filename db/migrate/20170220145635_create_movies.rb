@@ -8,7 +8,6 @@ class CreateMovies < ActiveRecord::Migration
       t.text :starring, null: false
       t.text :tagline, null: false
       t.string :plot, null: false
-      t.references :movie_theater, null: false
 
       t.timestamps null: false
     end

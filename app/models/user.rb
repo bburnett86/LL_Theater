@@ -1,11 +1,7 @@
 require 'bcrypt'
 
-class Admin < ActiveRecord::Base
+class User < ActiveRecord::Base
   include BCrypt
-
-  has_many :movie_theaters
-
-  has_many :receipts
 
   has_secure_password
 
@@ -13,13 +9,12 @@ class Admin < ActiveRecord::Base
   validates :username, uniqueness: true
   validates :password, length: { minimum: 8 }
 
-  def self.authenticate(username, password)
-    if user = Admin.find_by(username: username)
+  def self.authenticate(email, password)
+    if user = User.find_by(email: email)
       if user.authenticate(password)
         return user
       end
     end
     nil
   end
-
 end

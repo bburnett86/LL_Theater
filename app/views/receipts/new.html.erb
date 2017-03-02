@@ -1,0 +1,35 @@
+<div class = "container-fluid">
+  <div class = "jumbotron">
+    <%= form_for [@movie, @showtime, @receipt] do |r| %>
+      <div class = "row center-row">
+        <%= r.label "Name On Credit Card" %>
+        <%= r.text_field :name %>
+      </div>
+      <div class = "row center-row">
+        <%= r.label :email %>
+        <%= r.email_field :email %>
+      </div>
+      <div class = "row center-row">
+        <%= r.label "Credit Card Information" %>
+        <%= r.text_field :cc_info, placeholder: "****************" %>
+      </div>
+      <div class = "row center-row">
+        <%= r.label "Credit Card Expiration Date"%>
+        <%= r.date_field :cc_exp_date %>
+      </div>
+      <div class = "row center-row">
+        <%= r.submit "Purchase Ticket", class: 'submit-button' %>
+      </div>
+    <% end %>
+    <% if @errors %>
+      <div class="errors-container">
+        <h1 class="errors-header">ERRORS:</h1>
+        <ol class="errors-list">
+          <% @errors.uniq.each do |error| %>
+            <li class="error-list-item"><%= error %></li>
+          <% end %>
+        </ol>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -5,18 +5,15 @@ class Showtime < ActiveRecord::Base
 
   belongs_to :auditorium
 
-  belongs_to :movie_theater
-
   has_many :receipts
 
   validate do |showtime|
-    showtime.auditorium_available?(self.start, self.finish)
-    showtime.tickets_available?
+    showtime.auditorium_available?
   end
 
 
   def available_seats
-    taken_seats = Showtime.where(auditorium_id: self.auditorium_id).where(start: self.start).length
+    taken_seats = self.receipts.length
     return self.auditorium.capacity - taken_seats
   end
 
@@ -26,10 +23,13 @@ class Showtime < ActiveRecord::Base
     end
   end
 
-  def auditorium_available?(start_time, end_time)
+  def auditorium_available?
     Showtime.where(auditorium_id: self.auditorium_id).each do |showtime|
-      if start_time.between?(showtime.start, showtime.finish) || end_time.between?(showtime.start, showtime.finish)
+      if self.start.between?(showtime.start, showtime.finish) || self.finish.between?(showtime.start, showtime.finish)
         errors.add(:start, :invalid_time, message: "Auditorium currently in use when this showtime would be viewing.")
+        return false
+      else
+        return true
       end
     end
   end

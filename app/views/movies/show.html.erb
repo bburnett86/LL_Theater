@@ -1,0 +1,59 @@
+<div class = "container-fluid">
+  <div class = "jumbotron">
+    <div class = "row center-row">
+      <h1><%= @movie.name %></h1>
+    </div>
+
+    <div class = "row center-row">
+      <%= image_tag("#{@movie.pic_url}") %>
+    </div>
+    <div class = "row">
+      <div class = "col-md-8" >
+        <div class = "row">
+          <p>Starring: <%= @movie.starring %>
+        </div>
+        <div class = "row">
+          <p>Tagline: </p><%= simple_format(@movie.tagline) %>
+        </div>
+        <div class = "row">
+          <p>Description: </p><%= simple_format(@movie.plot) %>
+        </div>
+      </div>
+      <div class = "col-md-4">
+        <div class = "row center-row table-row">
+          <p>Showtimes</p>
+        </div>
+        <% @showtimes.order(start: :asc).each do |showtime| %>
+          <div class = "row center-row table-row">
+            <% if showtime.tickets_available? || showtime.start < Time.now %>
+              <p> <%= showtime.start.strftime("%r") %></p>
+            <% else %>
+              <p><%= link_to showtime.start.strftime("%r"), movie_showtime_path(@movie, showtime.id) %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% if logged_in? %>
+  <div class = "container-fluid">
+    <div class = "jumbotron">
+      <div class = "row center-row">
+        <div class = "col-md-4">
+          <div class = "row center-row">
+            <p><%= @movie.name %>'s Total Sales: <%= number_to_currency(Receipt.total_sales_by_movie(@movie.id)) %></p>
+          </div>
+        </div>
+        <div class = "col-md-4">
+          <%= link_to "Edit Movie", edit_movie_path(@movie) %>
+        </div>
+        <div class = "col-md-4">
+          <%= form_for @movie, method: :delete do |m| %>
+            <%= m.submit "Delete Movie", class: 'submit-button' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

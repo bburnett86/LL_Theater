@@ -13,3 +13,47 @@
  *= require_tree .
  *= require_self
  */
+
+@media only screen and (max-width: 1026px) {
+  .not-mobile {
+    display: none;
+  }
+}
+
+body{
+  background-color: #F1A9A9;
+  color: #6E4D4D;
+}
+
+.row{
+  font-family: 'Raleway', sans-serif;
+}
+
+.center-row{
+  text-align: center;
+}
+
+.row-align-left{
+  text-align: left;
+}
+
+.row-align-right{
+  text-align: right;
+}
+
+.title{
+  font-style: italic;
+}
+
+.table-row{
+  outline: thin solid #6E4D4D;
+}
+
+.row-above-margin{
+  margin-top: 30px;
+}
+
+.submit-button{
+  background-color: #F1A9A9;
+  border-radius: 10px;
+}

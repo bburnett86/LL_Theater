@@ -1,33 +1,33 @@
 class ReceiptsController < ApplicationController
+
+  before_action :authorize, only: [:index, :movie_index]
+
   def index
-    @admin = Admin.find(params[:id])
     @receipts = Receipt.all
     render :index
   end
 
-  def show
-    @admin = Admin.find(params[:admin_id])
-    @receipt = @admin.receipts.find(params[:id])
-    @showtime = @receipt.showtime
-    render :show
+  def movie_index
+    @movie = Movie.find(params[:movie_id])
+    @showtime = Showtime.find(params[:showtime_id])
+    @receipts = @showtime.receipts.all
+    render :movie_index
   end
 
   def new
-    @movie_theater = MovieTheater.find(params[:movie_theater_id])
-    @movie = @movie_theater.movies.find_by(name: params[movie_name])
+    @movie = Movie.find(params[:movie_id])
     @showtime = @movie.showtimes.find(params[:showtime_id])
     @receipt = @showtime.receipts.new
     render :new
   end
 
   def create
-    @movie_theater = MovieTheater.find(params[:movie_theater_id])
-    @movie = @movie_theater.movies.find_by(name: params[movie_name])
+    @movie = Movie.find(params[:movie_id])
     @showtime = @movie.showtimes.find(params[:showtime_id])
-    # @receipt = @showtime.receipts.new(movie_theater: @movie_theater.id, movie_id: @movie.id, showtime_id: @showtime.id, first_name: params[:first_name], last_name: params[:last_name] , email: params[:email] , cc_info: params[:cc_info] , cc_exp_date: params[:cc_exp_date] , sale_price: params[:sale_price])
-    @receipt = @showtime.receipts.new(:receipt)
+    @receipt = @showtime.receipts.new(showtime_id: @showtime.id, name: params[:receipt][:name] , email: params[:receipt][:email] , cc_info: params[:receipt][:cc_info] , cc_exp_date: params[:receipt][:cc_exp_date])
     if @receipt.save
-      redirect_to (:root)
+      ReceiptMailer.registration_confirmation_email(@receipt).deliver_now
+      redirect_to movie_path(@movie)
     else
       @errors = @receipt.errors.full_messages
       render :new

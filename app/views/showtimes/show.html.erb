@@ -1,0 +1,66 @@
+<div class = "fluid-container">
+  <div class = "jumbotron">
+    <div class = "row center-row">
+      <h1><%= @movie.name %></h1>
+    </div>
+    <div class = "row center-row">
+      <%= image_tag @movie.pic_url %>
+    </div>
+    <div class = "row center-row">
+      <div class ="col-md-4 table-row">
+        <div class = "row">
+          <h3 class>Price</h3>
+        </div>
+        <div class ="row">
+          <p><%= number_to_currency(@showtime.price) %></p>
+        </div>
+      </div>
+      <div class ="col-md-4 table-row">
+        <div class = "row">
+          <h3 class>Start Time</h3>
+        </div>
+        <div class ="row">
+          <p><%= @showtime.start.strftime("%r") %></p>
+        </div>
+      </div>
+      <div class ="col-md-4 table-row">
+        <div class = "row">
+          <h3 class>Auditorium</h3>
+        </div>
+        <div class ="row">
+          <p><%= @auditorium.id  %></p>
+        </div>
+      </div>
+    </div>
+    <div class = "row center-row row-above-margin">
+      <div class = "col-md-4">
+        <p>Available Seats: <%= @showtime.available_seats%></p>
+      </div>
+      <div class = "col-md-4">
+        <%= link_to "Return to: #{@movie.name}", movie_path(@movie.id) %>
+      </div>
+      <div class = "col-md-4">
+        <%= link_to "Purchase Ticket", new_movie_showtime_receipt_path(@movie.id, @showtime.id) %>
+      </div>
+    </div>
+  </div>
+</div>
+<% if logged_in? %>
+  <div class = "container-fluid">
+    <div class = "jumbotron">
+      <div class = "row center-row">
+        <div class = "col-md-4">
+          <%= link_to "Index of Sales For This Movie", receipt_by_movie_path(@movie.id, @showtime.id) %>
+        </div>
+        <div class = "col-md-4">
+          <%= link_to "Edit Showtime", edit_movie_showtime_path(@movie.id, @showtime.id) %>
+        </div>
+        <div class = "col-md-4">
+          <%= form_for [@movie, @showtime], method: :delete do |m| %>
+            <%= m.submit "Delete Showtime", class: 'submit-button' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

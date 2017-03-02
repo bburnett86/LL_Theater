@@ -1,0 +1,37 @@
+<div class = "container-fluid">
+  <div class = "jumbotron">
+    <div class = "row center-row">
+      <h1>Auditoriums</h1>
+    </div>
+    <div class = "row center-row not-mobile">
+      <div class = "col-md-4">
+        <p>Auditorium Number</p>
+      </div>
+      <div class = "col-md-4">
+        <p>Auditorium Capacity</p>
+      </div>
+      <div class = "col-md-4">
+      </div>
+    </div>
+    <div class = "row center-row">
+      <% @auditoriums.each do |auditorium| %>
+        <div class = "col-md-4">
+          <p><%= auditorium.id %><%= link_to " View / Add Showtime For", auditorium_path(auditorium.id) %></p>
+        </div>
+        <div class = "col-md-4">
+          <p><%= auditorium.capacity %></p>
+        </div>
+        <div class = "col-md-4">
+          <div class = "row center-row">
+            <p><%= link_to "Edit Auditorium", edit_auditorium_path(auditorium) %></p>
+          </div>
+          <div class = "row center-row">
+            <%= form_for auditorium, method: :delete do |a| %>
+              <%= a.submit "Destroy Auditorium", class: 'submit-button' %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

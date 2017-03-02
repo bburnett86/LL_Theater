@@ -1,0 +1,27 @@
+<div class = "containter-fluid">
+  <div class = "jumbotron">
+    <div class = "row center-row">
+      <h1>Auditorium Number: <%= @auditorium.id %></h1>
+    </div>
+    <div class = "row center-row">
+      <div class = "col-md-4">
+        <%= @auditorium.id %>
+      </div>
+      <div class = "col-md-4">
+        <%= @auditorium.capacity %>
+      </div>
+      <div class = "col-md-4">
+        <% @auditorium.showtimes.each do |showtime| %>
+          <div class = "row center-row">
+            <%= showtime.start.strftime("%r") %>
+          </div>
+        <% end %>
+        <% if logged_in? %>
+          <div class = "row center-row">
+            <%= link_to "Create New Showtime", new_auditorium_showtime_path(@auditorium) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

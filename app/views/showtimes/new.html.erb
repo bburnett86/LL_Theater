@@ -1,0 +1,59 @@
+<div class = "container-fluid">
+  <div class = "jumbotron">
+    <div class = "row center-row">
+      <p>Create Showtime For Auditorium <%= @auditorium.id %></p>
+    </div>
+    <%= form_for [@auditorium, @showtime] do |s| %>
+      <div class = "row center-row">
+        <div class = "col-md-6">
+          <% @movies.each do |movie| %>
+            <div class= "row">
+            <%= movie.name %>:  <%= s.radio_button(:movie_id, "#{movie.name}") %>
+            </div>
+          <% end %>
+        </div>
+        <div class = "col-md-6">
+          <div class = "row center-row">
+            <%= s.label "Price" %>
+          </div>
+          <div class = "row center-row">
+            <%= s.text_field :price %>
+          </div>
+          <div class = "row center-row">
+            <%= s.label "Start Time"%>
+          </div>
+          <div class = "row center-row">
+            <%= s.datetime_select :start %>
+          </div>
+          <div class = "row center-row">
+            <%= s.label "Finish Time"%>
+          </div>
+          <div class = "row center-row">
+            <%= s.datetime_select :finish %>
+          </div>
+        </div>
+        <div class = "row center-row">
+          <%= s.submit "Create New Showtime", class: 'submit-button' %>
+        </div>
+      <% end %>
+    </div>
+    <div class = "row center-row">
+      <h1>Current Start Times</h1>
+    </div>
+    <% @showtimes.order(start: :asc).each do |showtime| %>
+      <div class = "row center-row">
+        <%= showtime.start.strftime("%r") %>
+      </div>
+    <% end %>
+    <% if @errors %>
+      <div class="errors-container">
+        <h3 class="errors-header">ERRORS:</h3>
+        <ol class="errors-list">
+          <% @errors.uniq.each do |error| %>
+            <li class="error-list-item"><%= error %></li>
+          <% end %>
+        </ol>
+      </div>
+    <% end %>
+  </div>
+</div>

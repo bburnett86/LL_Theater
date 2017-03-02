@@ -1,74 +1,87 @@
 class ShowtimesController < ApplicationController
 
+  before_action :authorize, except: [:show]
+
   def create
-    @admin = Admin.find(params[:admin_id])
+    @auditorium = Auditorium.find(params[:auditorium_id])
+    @movie = Movie.find_by(name: params[:showtime][:movie_id])
 
-    @movie_theaters = @admin.movie_theaters.find(params[:movie_theater_id])
+    @start = DateTime.new(params[:showtime]["start(1i)"].to_i, params[:showtime]["start(2i)"].to_i, params[:showtime]["start(3i)"].to_i, params[:showtime]["start(4i)"].to_i, params[:showtime]["start(5i)"].to_i)
 
-    @showtime = @movie_theaters.showtimes.new(params[:showtime])
+    @finish = @start + @movie.hours.hours + @movie.minutes.minutes
 
-    if showtime.save
-      redirect_to admin_movie_theaters_path(@movie_theater)
+    @showtime = @auditorium.showtimes.new(price: params[:showtime][:price], start: @start, finish: @finish, auditorium: @auditorium, movie: @movie)
+
+    if @showtime.save!(price: params[:showtime][:price], start: @start, finish: @finish, auditorium: @auditorium, movie: @movie)
+      redirect_to movie_path(@movie)
     else
-      @errors = @movies.errors.full_messages
+      @errors = @showtime.errors.full_messages
       render :new
     end
   end
 
   def new
-    @admin = Admin.find(params[:admin_id])
 
-    @movie_theater = @admin.movie_theaters.find(params[:movie_theater_id])
+    @movies = Movie.all
 
-    @showtime = @movie_theater.showtimes.new
+    @auditorium = Auditorium.find(params[:auditorium_id])
+
+    @showtimes = @auditorium.showtimes.all
+
+    @showtime = @auditorium.showtimes.new
 
     render :new
   end
 
   def show
-    @movie_theater = MovieTheater.find(params[:movie_theater_id])
-
-    @movie = @movie_theater.movies.find_by(name: params[:name])
+    @movie = Movie.find(params[:movie_id])
 
     @showtime = @movie.showtimes.find(params[:id])
+
+    @auditorium = @showtime.auditorium
 
     render :show
   end
 
   def edit
-    @admin = Admin.find(params[:admin_id])
+    @movie = Movie.find(params[:movie_id])
 
-    @movie_theater = @admin.movie_theaters.find(params[:movie_theater_id])
+    @movies = Movie.all
 
-    @showtime = @movie_theater.showtimes.find(params[:id])
+    @auditoriums = Auditorium.all
+
+    @showtime = @movie.showtimes.find(params[:id])
 
     render :edit
   end
 
   def update
-    @admin = Admin.find(params[:admin_id])
+    @movie = Movie.find(params[:movie_id])
 
-    @movie_theater = @admin.movie_theaters.find(params[:movie_theater_id])
+    @showtime = @movie.showtimes.find(params[:id])
 
-    @showtime = @movie_theater.showtimes.find(params[:id])
+    @auditorium = @showtime.auditorium
 
-    if @showtime.update_attributes!(params[:showtime])
-      redirect_to admin_movie_theaters_path(@movie_theater)
+    @start = DateTime.new(params[:showtime]["start(1i)"].to_i, params[:showtime]["start(2i)"].to_i, params[:showtime]["start(3i)"].to_i, params[:showtime]["start(4i)"].to_i, params[:showtime]["start(5i)"].to_i)
+
+    @finish = @start + @movie.hours.hours + @movie.minutes.minutes
+
+    if @showtime.update_attributes!(price: params[:showtime][:price], start: @start, finish: @finish, auditorium: @auditorium, movie: @movie)
+
+      redirect_to movie_path(@movie)
     else
-      @erros = @movie_theater.errors.full_messages
+      @erros = @showtime.errors.full_messages
       render :edit
     end
   end
 
   def destroy
-    @admin = Admin.find(params[:admin_id])
+    @movie = Movie.find(params[:movie_id])
 
-    @movie_theater = @admin.movie_theaters.find(params[:movie_theater_id])
-
-    @showtime = @movie_theater.showtimes.find(params[:id])
+    @showtime = @movie.showtimes.find(params[:id])
 
     @showtime.destroy
 
-    redirect_to admin_movie_theaters_path(@movie_theater)
+    redirect_to movie_path(@movie)
   end
 end
