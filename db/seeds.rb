@@ -28,7 +28,7 @@ end
   )
 end
 
-time_now = Time.now
+time_now = DateTime.now
 
 @noon_today = time_now.noon
 
