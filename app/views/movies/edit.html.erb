@@ -63,7 +63,7 @@
     <% end %>
     <% if @errors %>
       <div class="errors-container">
-        <h1 class="errors-header">ERRORS:</h1>
+        <h3 class="errors-header">ERRORS:</h3>
         <ol class="errors-list">
           <% @errors.uniq.each do |error| %>
             <li class="error-list-item"><%= error %></li>

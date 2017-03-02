@@ -35,7 +35,7 @@
       </div>
       <div class = "row center-row">
         <div class = "col-md-6 row-align-right">
-          <%= m.label "Plot" %>
+          <%= m.label "Plot:" %>
         </div>
         <div class = "col-md-6 row-align-left">
           <%= m.text_area :plot%>
@@ -43,7 +43,7 @@
       </div>
       <div class = "row center-row">
         <div class = "col-md-6 row-align-right">
-          <%= m.label "Tag Line" %>
+          <%= m.label "Tag Line:" %>
         </div>
         <div class = "col-md-6 row-align-left">
           <%= m.text_area :tagline %>
@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class = "row center-row">
-        <%= m.submit "Edit Movie", class: 'submit-button' %>
+        <%= m.submit "Create New Movie", class: 'submit-button' %>
       </div>
     <% end %>
     <% if @errors %>
