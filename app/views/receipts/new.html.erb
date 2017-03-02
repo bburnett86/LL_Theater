@@ -1,21 +1,37 @@
 <div class = "container-fluid">
   <div class = "jumbotron">
     <%= form_for [@movie, @showtime, @receipt] do |r| %>
-      <div class = "row center-row">
-        <%= r.label "Name On Credit Card" %>
-        <%= r.text_field :name %>
+      <div class = "row">
+        <div class = "col-md-6 row-align-right">
+          <%= r.label "Name On Credit Card:" %>
+        </div>
+        <div class = "col-md-6 row-align-left">
+          <%= r.text_field :name %>
+        </div>
       </div>
-      <div class = "row center-row">
-        <%= r.label :email %>
-        <%= r.email_field :email %>
+      <div class = "row">
+        <div class = "col-md-6 row-align-right">
+          <%= r.label "Email:" %>
+        </div>
+        <div class = "col-md-6 row-align-left">
+          <%= r.email_field :email %>
+        </div>
       </div>
-      <div class = "row center-row">
-        <%= r.label "Credit Card Information" %>
-        <%= r.text_field :cc_info, placeholder: "****************" %>
+      <div class = "row">
+        <div class = "col-md-6 row-align-right">
+          <%= r.label "Credit Card Info:" %>
+        </div>
+        <div class = "col-md-6 row-align-left">
+          <%= r.text_field :cc_info, placeholder: "****************" %>
+        </div>
       </div>
-      <div class = "row center-row">
-        <%= r.label "Credit Card Expiration Date"%>
-        <%= r.date_field :cc_exp_date %>
+      <div class = "row">
+        <div class = "col-md-6 row-align-right">
+          <%= r.label "Credit Card Exp Date:"%>
+        </div>
+        <div class = "col-md-6 row-align-left">
+          <%= r.date_field :cc_exp_date %>
+        </div>
       </div>
       <div class = "row center-row">
         <%= r.submit "Purchase Ticket", class: 'submit-button' %>
@@ -23,7 +39,7 @@
     <% end %>
     <% if @errors %>
       <div class="errors-container">
-        <h1 class="errors-header">ERRORS:</h1>
+        <h3 class="errors-header">ERRORS:</h3>
         <ol class="errors-list">
           <% @errors.uniq.each do |error| %>
             <li class="error-list-item"><%= error %></li>
