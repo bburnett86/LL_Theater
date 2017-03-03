@@ -12,10 +12,7 @@ class Receipt < ActiveRecord::Base
   end
 
   def cc_expired?
-    p self
-    puts
-    puts
-    if Time.now > self.cc_exp_date
+    if !self.cc_exp_date || Time.now > self.cc_exp_date
       errors.add(:cc_exp_date, :invalid_date, message: "Credit Card Expired")
     end
   end
