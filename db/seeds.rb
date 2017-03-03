@@ -17,8 +17,8 @@
     starring: Faker::Superhero.name,
     tagline: Faker::HarryPotter.quote,
     plot: Faker::Hipster.paragraph,
-    hours: rand(1..3),
-    minutes: rand(0..60)
+    hours: rand(1..2),
+    minutes: rand(0..59)
   )
 end
 
